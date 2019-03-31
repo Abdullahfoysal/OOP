@@ -1,0 +1,67 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package syncronizing_maltithread;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+/**
+ *
+ * @author foysal
+ */
+public class Syncronizing_Maltithread {
+
+    private int balance=0;
+    
+    public static void main(String[] args) {
+        Syncronizing_Maltithread obj=new Syncronizing_Maltithread();
+        obj.goingThroughLife();
+        
+    }
+    public void goingThroughLife(){
+        Thread t1=new Thread(new Runnable(){
+            @Override
+            public void run() {
+                for(int i=0;i<10000;i++){
+                    add();
+                }
+                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+            
+        });
+        
+    
+    Thread t2=new Thread(new Runnable(){
+            @Override
+            public void run() {
+                
+                for(int i=0;i<10000;i++){
+                    subtract();
+                }
+                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+            
+        });
+    t1.start();
+    t2.start();
+        try {
+            t1.join();
+            t2.join();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Syncronizing_Maltithread.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+    System.out.println("Balance : "+balance);
+    }
+    
+    public synchronized void add(){
+        balance++;
+    }
+    public synchronized void subtract(){
+        balance--;
+    }
+    
+}
