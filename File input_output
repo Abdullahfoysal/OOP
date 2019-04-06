@@ -1,0 +1,49 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.file;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Scanner;
+/**
+ *
+ * @author foysal
+ */
+public class Main {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        //creating file or file name
+        File file=new File("output.txt");
+        try{
+            //write on file
+        PrintWriter output=new PrintWriter(file);
+        output.println("Calculator");
+        output.println(32);
+        output.close();//close file writing
+        }catch(IOException ex){
+            System.out.printf("Error: %s",ex);
+        }
+        try{
+            //read file
+        Scanner scan=new Scanner(file);//not system.in
+        String s=scan.nextLine();
+        int l=scan.nextInt();
+        
+                System.out.println(s);
+                System.out.println(l);
+
+        }catch(FileNotFoundException ex){
+            System.out.printf("error input: %s",ex);
+        }
+        
+        
+    }
+    
+}
