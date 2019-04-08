@@ -1,0 +1,78 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.file;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.TreeMap;
+import java.util.*;
+import java.util.StringJoiner;
+/**
+ *
+ * @author foysal
+ */
+public class Main {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        
+        String str ="";
+        
+        File file=new File("output.txt");
+        try{
+            
+        PrintWriter output=new PrintWriter(file);
+        output.println("input thing output input some thing");
+        output.println(32);
+        output.close();
+        }catch(IOException ex){
+            System.out.printf("Error: %s",ex);
+        }
+        
+        try{
+            
+        Scanner scan=new Scanner(file);
+        String ss=scan.nextLine();
+        int l=scan.nextInt();
+        
+               // System.out.println(ss);
+                //System.out.println(l);
+                str=ss;
+
+        }catch(FileNotFoundException ex){
+            System.out.printf("error input: %s",ex);
+        }
+        ///Count different words
+        int temp=0;
+        
+        Map<String,Integer> map=new TreeMap<String,Integer>();
+        
+        String[] arrOfStr = str.split(" ");
+  
+        for (String a : arrOfStr) 
+        {
+        
+             if (map.containsKey(a)) {
+                temp=map.get(a);
+                map.put(a, ++temp);
+            } else {
+                map.put(a, 1);
+            }
+	       
+        }
+
+          for(Map.Entry m:map.entrySet()){    
+       System.out.println(m.getKey()+" "+m.getValue());    
+      }  
+        
+    }
+    
+}
