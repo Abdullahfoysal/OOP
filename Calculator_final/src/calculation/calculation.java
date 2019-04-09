@@ -12,15 +12,104 @@ package calculation;
 public class calculation extends javax.swing.JFrame {
 
     double firstnum=0;
-    double secondnum;
-    double result;
+    double secondnum=0;
+    double result=0;
     String operation="",Display="";
+    boolean first=true; 
+   char ch='?';
+    String result_screen="0";
+    
     
     
     public calculation() {
         initComponents();
+      
+       
+    }
+    public void Operation(){
+         System.out.print(ch);
+         switch(ch){
+            case '+':result+=secondnum;
+           
+            break;
+            case '-':result-=secondnum;
+            break;
+            case 'x':result*=secondnum;
+            break;
+            case '/':result/=secondnum;
+            break;
+        }
+    }
+    
+    public void erase(){
+        String newNumber="";
+        char saveOperation='?';
+        for(int i=Display.length()-1;i>=0;i--)
+        {
+            char c=Display.charAt(i);
+             if(c=='+' || c=='-' || c=='x' || c=='/')
+             {
+                  saveOperation=c;
+                 break;
+             }
+             else{
+                    newNumber+=c;
+             }
+            
+        }
+        //reverse string
+        String ss="";
+        for(int i=newNumber.length()-1;i>=0;i--)
+        {
+            char c=newNumber.charAt(i);
+           ss+=c;
+            
+        }
+        newNumber=ss;
+        //after deleting number then the number is below
+        String existNumber="";
+        
+        for(int i=Display.length()-1;i>=0;i--)
+        {
+            char c=Display.charAt(i);
+             if(c=='+' || c=='-' || c=='x' || c=='/')
+             {
+                
+                 break;
+             }
+             else{
+                    existNumber+=c;
+             }
+            
+        }
+        
+        //reverse string
+         ss="";
+        for(int i=existNumber.length()-1;i>=0;i--)
+        {
+            char c=existNumber.charAt(i);
+           ss+=c;
+            
+        }
+        existNumber=ss;
+        secondnum=Double.parseDouble(existNumber);
+        result-=Double.parseDouble(newNumber);//fullnumber 
+      
+        
+        
+         if(!Display.isEmpty()) {
+             char c=Display.charAt(Display.length()-1);
+             if(c=='+' || c=='-' || c=='x' || c=='/');
+             else
+                 String newNumber+=c;
+         
+        Display=charRemoveAt(Display,Display.length()-1);
+         
+         }
+        
     }
 
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -63,6 +152,9 @@ public class calculation extends javax.swing.JFrame {
         jButton27 = new javax.swing.JButton();
         jButton28 = new javax.swing.JButton();
         jButton29 = new javax.swing.JButton();
+        jTextField3 = new javax.swing.JTextField();
+        jButton30 = new javax.swing.JButton();
+        jButton31 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -313,12 +405,28 @@ public class calculation extends javax.swing.JFrame {
             }
         });
 
+        jTextField3.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
+        jTextField3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField3ActionPerformed(evt);
+            }
+        });
+
+        jButton30.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        jButton30.setText(")");
+
+        jButton31.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        jButton31.setText("(");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE)
+                    .addComponent(jTextField3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
@@ -373,22 +481,26 @@ public class calculation extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jButton22)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton20, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton23)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton21, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
                                         .addComponent(jButton13)
                                         .addGap(3, 3, 3)
                                         .addComponent(jButton16)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jButton15)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton28)))))
-                        .addGap(243, 243, 243))
+                                        .addComponent(jButton28))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jButton22)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jButton20, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jButton23)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jButton21, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jButton31, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton30, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(195, 195, 195))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton17)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -398,28 +510,33 @@ public class calculation extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField3)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(24, 24, 24)
+                .addGap(64, 64, 64)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton20, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton23, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton22, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton19, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jButton19, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
+                    .addComponent(jButton21)
+                    .addComponent(jButton30, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton31, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton13)
                     .addComponent(jButton14)
                     .addComponent(jButton15)
                     .addComponent(jButton16)
                     .addComponent(jButton28, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton27, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -456,9 +573,15 @@ public class calculation extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
           if(Display=="Display")Display="";
-        operation+='5';
+         operation+='5';
+           Display+='5';
+           
+          secondnum=Double.parseDouble(operation);
+          Operation(); 
+          result_screen = Double.toString(result);
+          jTextField3.setText(result_screen);
         
-          Display+='5';
+        
          jTextField1.setText(Display);
          jTextField2.setText(Display);
     }//GEN-LAST:event_jButton5ActionPerformed
@@ -466,7 +589,11 @@ public class calculation extends javax.swing.JFrame {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
           if(Display=="Display")Display="";
         operation+='6';
+         secondnum=Double.parseDouble(operation);
         Display+='6';
+         Operation(); 
+          result_screen = Double.toString(result);
+          jTextField3.setText(result_screen);
          jTextField1.setText(Display);
          jTextField2.setText(Display);
     }//GEN-LAST:event_jButton6ActionPerformed
@@ -474,7 +601,11 @@ public class calculation extends javax.swing.JFrame {
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
            if(Display=="Display")Display="";
         operation+='8';
+         secondnum=Double.parseDouble(operation);
         Display+='8';
+         Operation(); 
+          result_screen = Double.toString(result);
+          jTextField3.setText(result_screen);
          jTextField1.setText(Display);
          jTextField2.setText(Display);
     }//GEN-LAST:event_jButton8ActionPerformed
@@ -482,7 +613,11 @@ public class calculation extends javax.swing.JFrame {
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
          if(Display=="Display")Display="";
         operation+='9';
+         secondnum=Double.parseDouble(operation);
       Display+='9';
+       Operation(); 
+          result_screen = Double.toString(result);
+          jTextField3.setText(result_screen);
          jTextField1.setText(Display);
          jTextField2.setText(Display);
     }//GEN-LAST:event_jButton9ActionPerformed
@@ -490,7 +625,11 @@ public class calculation extends javax.swing.JFrame {
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
           if(Display=="Display")Display="";
         operation+='0';
-       Display+=operation;
+         secondnum=Double.parseDouble(operation);
+       Display+='0';
+        Operation(); 
+          result_screen = Double.toString(result);
+          jTextField3.setText(result_screen);
          jTextField1.setText(Display);
          jTextField2.setText(Display);
     }//GEN-LAST:event_jButton10ActionPerformed
@@ -498,7 +637,7 @@ public class calculation extends javax.swing.JFrame {
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
           if(Display=="Display")Display="";
         operation+='.';
-         Display+=operation;
+         Display+='.';
          jTextField1.setText(Display);
          jTextField2.setText(Display);
     }//GEN-LAST:event_jButton11ActionPerformed
@@ -529,7 +668,14 @@ public class calculation extends javax.swing.JFrame {
 
     private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
          if(Display=="Display")Display="";
-       
+        if(first){
+             firstnum=Double.parseDouble(operation);
+             result=firstnum;
+             first=false;
+             this.ch='/';
+         }
+         else
+         this.ch='/';
       
        Display+='/';
        operation="";
@@ -539,8 +685,16 @@ public class calculation extends javax.swing.JFrame {
 
     private void jButton25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton25ActionPerformed
           if(Display=="Display")Display="";
-         firstnum=Double.parseDouble(operation);
+         if(first){
+             firstnum=Double.parseDouble(operation);
+             result=firstnum;
+             first=false;
+             this.ch='+';
+         }
+         else this.ch='+';
+ 
         
+         
       
        Display+='+';
        operation="";
@@ -550,7 +704,14 @@ public class calculation extends javax.swing.JFrame {
 
     private void jButton26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton26ActionPerformed
            if(Display=="Display")Display="";
-         
+          if(first){
+             firstnum=Double.parseDouble(operation);
+             result=firstnum;
+             first=false;
+             this.ch='x';
+         }
+          else  this.ch='x';
+      
        
        Display+='x';
        operation="";
@@ -560,7 +721,13 @@ public class calculation extends javax.swing.JFrame {
 
     private void jButton27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton27ActionPerformed
           if(Display=="Display")Display="";
-         
+          if(first){
+             firstnum=Double.parseDouble(operation);
+             result=firstnum;
+             first=false;
+             this.ch='-';
+         }
+          else  this.ch='-';
        
        Display+='-';
        operation="";
@@ -572,6 +739,10 @@ public class calculation extends javax.swing.JFrame {
            if(Display=="Display")Display="";
         operation+='2';
         Display+='2';
+         secondnum=Double.parseDouble(operation);
+          Operation(); 
+          result_screen = Double.toString(result);
+          jTextField3.setText(result_screen);
          jTextField1.setText(Display);
          jTextField2.setText(Display);
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -580,6 +751,10 @@ public class calculation extends javax.swing.JFrame {
           if(Display=="Display")Display="";
         operation+='1';
         Display+='1';
+          secondnum=Double.parseDouble(operation);
+          Operation(); 
+          result_screen = Double.toString(result);
+          jTextField3.setText(result_screen);
          jTextField1.setText(Display);
          jTextField2.setText(Display);
        
@@ -591,8 +766,12 @@ public class calculation extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
            if(Display=="Display")Display="";
-        operation+='4';
-      Display+='4';
+         operation+='4';
+          Display+='4';
+        secondnum=Double.parseDouble(operation);
+          Operation(); 
+          result_screen = Double.toString(result);
+          jTextField3.setText(result_screen);
          jTextField1.setText(Display);
          jTextField2.setText(Display);
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -600,7 +779,12 @@ public class calculation extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
           if(Display=="Display")Display="";
         operation+='3';
-      Display+='3';
+        Display+='3';
+        
+        secondnum=Double.parseDouble(operation);
+          Operation(); 
+          result_screen = Double.toString(result);
+          jTextField3.setText(result_screen);
          jTextField1.setText(Display);
          jTextField2.setText(Display);
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -609,16 +793,21 @@ public class calculation extends javax.swing.JFrame {
          if(Display=="Display")Display="";
         operation+='7';
         Display+='7';
+        
+          secondnum=Double.parseDouble(operation);
+          Operation(); 
+          result_screen = Double.toString(result);
+          jTextField3.setText(result_screen);
          jTextField1.setText(Display);
          jTextField2.setText(Display);
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
        int len=operation.length();
-      if(!operation.isEmpty()) 
+      if(!operation.isEmpty() && Display!="Display") 
       operation=charRemoveAt(operation,len-1);
       
-    if(!Display.isEmpty()) 
+    if(!Display.isEmpty() && Display!="Display") 
         Display=charRemoveAt(Display,Display.length()-1);
     
       if(Display.isEmpty()){
@@ -630,6 +819,10 @@ public class calculation extends javax.swing.JFrame {
           jTextField2.setText(Display);
            jTextField1.setText(Display);
       }
+    
+         ch='?';
+          result_screen ="";
+          jTextField3.setText(result_screen);
        
        
     }//GEN-LAST:event_jButton19ActionPerformed
@@ -654,6 +847,11 @@ public class calculation extends javax.swing.JFrame {
         Display="Display";
         jTextField1.setText(Display);
           jTextField2.setText("History");
+           jTextField3.setText("Result");
+          
+          ch='?';
+          result=0;
+          first=true;
         operation="";
         Display="";
     }//GEN-LAST:event_jButton18ActionPerformed
@@ -661,6 +859,10 @@ public class calculation extends javax.swing.JFrame {
     private void jButton29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton29ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton29ActionPerformed
+
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField3ActionPerformed
 
     public static String charRemoveAt(String str, int p) {  
               return str.substring(0, p) + str.substring(p + 1);  
@@ -723,6 +925,8 @@ public class calculation extends javax.swing.JFrame {
     private javax.swing.JButton jButton28;
     private javax.swing.JButton jButton29;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton30;
+    private javax.swing.JButton jButton31;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
@@ -731,6 +935,7 @@ public class calculation extends javax.swing.JFrame {
     private javax.swing.JButton jButton9;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
 
     
