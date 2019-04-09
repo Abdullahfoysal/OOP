@@ -9,7 +9,7 @@ package calculation;
  *
  * @author foysal
  */
-public class calculation extends javax.swing.JFrame {
+public class calculation extends javax.swing.JFrame   {
 
     double firstnum=0;
     double secondnum=0;
@@ -44,6 +44,9 @@ public class calculation extends javax.swing.JFrame {
     public void erase(){
         String newNumber="";
         char saveOperation='?';
+         if(!Display.isEmpty() && Display!="Display") {
+        
+     
         for(int i=Display.length()-1;i>=0;i--)
         {
             char c=Display.charAt(i);
@@ -66,7 +69,12 @@ public class calculation extends javax.swing.JFrame {
             
         }
         newNumber=ss;
-        //after deleting number then the number is below
+        //after deleting number then the existnumber is below
+           Display=charRemoveAt(Display,Display.length()-1);
+           System.out.println(Display);
+           
+    
+        
         String existNumber="";
         
         for(int i=Display.length()-1;i>=0;i--)
@@ -93,19 +101,19 @@ public class calculation extends javax.swing.JFrame {
         }
         existNumber=ss;
         secondnum=Double.parseDouble(existNumber);
-        result-=Double.parseDouble(newNumber);//fullnumber 
-      
+        ch=saveOperation;
+        if(ch=='+') result-=Double.parseDouble(newNumber);//fullnumber 
+        else if(ch=='-') result+=Double.parseDouble(newNumber);//fullnumber 
+        else if(ch=='x') result/=Double.parseDouble(newNumber);//fullnumber 
+        else if(ch=='/') result*=Double.parseDouble(newNumber);//fullnumber 
+        
+        Operation();
+         
+     }
         
         
-         if(!Display.isEmpty()) {
-             char c=Display.charAt(Display.length()-1);
-             if(c=='+' || c=='-' || c=='x' || c=='/');
-             else
-                 String newNumber+=c;
-         
-        Display=charRemoveAt(Display,Display.length()-1);
-         
-         }
+        
+        
         
     }
 
@@ -176,6 +184,7 @@ public class calculation extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setBackground(new java.awt.Color(222, 12, 12));
         jButton1.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
         jButton1.setText("1");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -184,6 +193,7 @@ public class calculation extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setBackground(new java.awt.Color(222, 12, 12));
         jButton2.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
         jButton2.setText("2");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -192,6 +202,7 @@ public class calculation extends javax.swing.JFrame {
             }
         });
 
+        jButton3.setBackground(new java.awt.Color(222, 12, 12));
         jButton3.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
         jButton3.setText("3");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -200,6 +211,7 @@ public class calculation extends javax.swing.JFrame {
             }
         });
 
+        jButton4.setBackground(new java.awt.Color(222, 12, 12));
         jButton4.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
         jButton4.setText("4");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -208,6 +220,7 @@ public class calculation extends javax.swing.JFrame {
             }
         });
 
+        jButton5.setBackground(new java.awt.Color(222, 12, 12));
         jButton5.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
         jButton5.setText("5");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -216,6 +229,7 @@ public class calculation extends javax.swing.JFrame {
             }
         });
 
+        jButton6.setBackground(new java.awt.Color(222, 12, 12));
         jButton6.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
         jButton6.setText("6");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -224,6 +238,7 @@ public class calculation extends javax.swing.JFrame {
             }
         });
 
+        jButton7.setBackground(new java.awt.Color(222, 12, 12));
         jButton7.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
         jButton7.setText("7");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
@@ -232,6 +247,7 @@ public class calculation extends javax.swing.JFrame {
             }
         });
 
+        jButton8.setBackground(new java.awt.Color(222, 12, 12));
         jButton8.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
         jButton8.setText("8");
         jButton8.addActionListener(new java.awt.event.ActionListener() {
@@ -240,6 +256,7 @@ public class calculation extends javax.swing.JFrame {
             }
         });
 
+        jButton9.setBackground(new java.awt.Color(222, 12, 12));
         jButton9.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
         jButton9.setText("9");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
@@ -248,6 +265,7 @@ public class calculation extends javax.swing.JFrame {
             }
         });
 
+        jButton10.setBackground(new java.awt.Color(222, 12, 12));
         jButton10.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
         jButton10.setText("0");
         jButton10.addActionListener(new java.awt.event.ActionListener() {
@@ -264,6 +282,7 @@ public class calculation extends javax.swing.JFrame {
             }
         });
 
+        jButton12.setBackground(new java.awt.Color(26, 112, 26));
         jButton12.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
         jButton12.setText("=");
         jButton12.addActionListener(new java.awt.event.ActionListener() {
@@ -316,6 +335,8 @@ public class calculation extends javax.swing.JFrame {
             }
         });
 
+        jButton18.setBackground(new java.awt.Color(1, 213, 161));
+        jButton18.setForeground(new java.awt.Color(255, 0, 0));
         jButton18.setText("Clear");
         jButton18.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -323,6 +344,7 @@ public class calculation extends javax.swing.JFrame {
             }
         });
 
+        jButton19.setBackground(new java.awt.Color(16, 90, 248));
         jButton19.setText("DEL");
         jButton19.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -362,6 +384,7 @@ public class calculation extends javax.swing.JFrame {
             }
         });
 
+        jButton24.setBackground(new java.awt.Color(230, 224, 68));
         jButton24.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
         jButton24.setText("/");
         jButton24.addActionListener(new java.awt.event.ActionListener() {
@@ -370,6 +393,7 @@ public class calculation extends javax.swing.JFrame {
             }
         });
 
+        jButton25.setBackground(new java.awt.Color(230, 224, 68));
         jButton25.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
         jButton25.setText("+");
         jButton25.addActionListener(new java.awt.event.ActionListener() {
@@ -378,6 +402,7 @@ public class calculation extends javax.swing.JFrame {
             }
         });
 
+        jButton26.setBackground(new java.awt.Color(230, 224, 68));
         jButton26.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
         jButton26.setText("X");
         jButton26.addActionListener(new java.awt.event.ActionListener() {
@@ -386,6 +411,7 @@ public class calculation extends javax.swing.JFrame {
             }
         });
 
+        jButton27.setBackground(new java.awt.Color(230, 224, 68));
         jButton27.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
         jButton27.setText("-");
         jButton27.addActionListener(new java.awt.event.ActionListener() {
@@ -427,8 +453,8 @@ public class calculation extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE)
                     .addComponent(jTextField3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jTextField2))
             .addGroup(layout.createSequentialGroup()
                 .addGap(168, 168, 168)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -807,22 +833,23 @@ public class calculation extends javax.swing.JFrame {
       if(!operation.isEmpty() && Display!="Display") 
       operation=charRemoveAt(operation,len-1);
       
-    if(!Display.isEmpty() && Display!="Display") 
-        Display=charRemoveAt(Display,Display.length()-1);
+        erase();//display erase and repeat calculation
     
       if(Display.isEmpty()){
           Display="Display";
+           ch='?';
+          result_screen ="Result";
            jTextField2.setText("History");
             jTextField1.setText(Display);
       }
       else if(!Display.isEmpty()){ 
           jTextField2.setText(Display);
            jTextField1.setText(Display);
+           jTextField3.setText(result_screen);
       }
     
-         ch='?';
-          result_screen ="";
-          jTextField3.setText(result_screen);
+        
+        
        
        
     }//GEN-LAST:event_jButton19ActionPerformed
